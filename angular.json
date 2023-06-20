@@ -27,10 +27,16 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/geo-innsyn-web-components.js",
+                "input": "./node_modules/@isygis/geo-innsyn-web-components/",
+                "output": "./assets/js/"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "./node_modules/@isygis/geo-innsyn-web-components/geo-innsyn-web-components.css"
             ],
             "scripts": []
           },
