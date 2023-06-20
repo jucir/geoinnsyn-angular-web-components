@@ -21,5 +21,47 @@ export class AppComponent {
   mapoutput(event: any): void {
     const eventDetail = event.detail;
     if (!eventDetail) return;
+    console.log('eventDetail', eventDetail);
+    if (eventDetail['mapOutputId'] === 'mapCenter') {
+      console.log('mapCenter', eventDetail['mapCenter']);
+    }
+  }
+
+  setCenter(): void {
+    this.giParams = {
+      giParamId: 'setCenter',
+      epsg: 'EPSG:32632',
+      lat: 6742848.280273437,
+      lon: 586521.8266601556,
+      scale: 2500,
+      zoom: 15,
+      showMarker: true,
+      markerColor: 'rgba(255, 147, 0, 1)',
+    };
+  }
+
+  getCenter(): void {
+    this.giParams = { giParamId: 'getCenter' };
+  }
+
+  testGiParamsArray(): void {
+    this.giParams = [
+      {
+        giParamId: 'setMapAnimation',
+        active: false,
+      },
+      {
+        giParamId: 'getVisibleLayers',
+        active: true,
+      },
+      {
+        giParamId: 'setCenter',
+        epsg: 'EPSG:32632',
+        lat: 6942848.280273437,
+        lon: 596521.8266601556,
+        scale: 2500,
+        zoom: 15,
+      },
+    ];
   }
 }
