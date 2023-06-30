@@ -31,23 +31,6 @@ export const geojsonTest = {
         ]
       },
       properties: {
-        style: {
-          fill: {
-            color: 'rgba(0,0,0,0.75)'
-          },
-          stroke: {
-            color: 'rgba(0,0,0,1)',
-            width: 2
-          },
-          image: {
-            radius: 7,
-            fill: {
-              color: 'rgba(0,0,0,1)'
-            }
-          },
-          text: '',
-          textSize: 16
-        },
         name: 'Knud'
       },
       id: 'e4a5c347-6d40-9d5f-eaaf-4a534483287b'
@@ -62,23 +45,6 @@ export const geojsonTest = {
         ]
       },
       properties: {
-        style: {
-          fill: {
-            color: 'rgba(0,0,0,0.75)'
-          },
-          stroke: {
-            color: 'rgba(0,0,0,1)',
-            width: 2
-          },
-          image: {
-            radius: 7,
-            fill: {
-              color: 'rgba(0,0,0,1)'
-            }
-          },
-          text: '',
-          textSize: 16
-        }
       },
       id: 'd11948e0-10bc-e63b-aa13-d446f2b3ecd3'
     }
@@ -195,6 +161,22 @@ export const jsonStyleTest = {
       color: 'rgba(0,0,0,1)'
     }
   }
+};
+
+export const jsonStyleTestCopy = {
+  fill: {
+    color: 'rgba(234,158,227,1)',
+  },
+  stroke: {
+    color: 'rgba(234,158,227,1)',
+    width: 2,
+  },
+  image: {
+    radius: 7,
+    fill: {
+      color: 'rgba(234,158,227,1)',
+    },
+  },
 };
 
 export const geoJsonFeatureInfoTest = [

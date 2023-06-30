@@ -4,7 +4,7 @@ import {
   EMapOutputParams,
 } from './enums/custom-element-params';
 import { IActivateParam, IExtent, IHide, IMapCenter, IRemoveLayer, IRemoveLayers, ISaksInfoParam, IShowHideLayer, IShowLayers, ITransformCoordinates, IUploadDrawingGeoJson, IUploadGeoJson } from './interfaces/map-params';
-import { geoJsonFeatureInfoTest, geojsonTest, geojsonTest1, jsonStyleTest, routeGeoJson } from './testData/testData';
+import { geoJsonFeatureInfoTest, geojsonTest, geojsonTest1, jsonStyleTest, jsonStyleTestCopy, routeGeoJson } from './testData/testData';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -305,6 +305,25 @@ export class AppComponent {
     ];
   }
 
+  uploadGeoJsonCopy(): void {
+    this.giParams = [
+      {
+        giParamId: EElementsParams.UPLOADGEOJSON,
+        layerName: 'test',
+        features: JSON.stringify(geojsonTest),
+        jsonStyle: JSON.stringify(jsonStyleTestCopy),
+        cluster: true,
+        clusterdistance: 30,
+        clustercount: true,
+        clusterstyleurl:
+          'https://test.geoinnsyn.no/services/ISY.GIS.IsyGeoinnsynConfig/api/v2/style?application=demo&name=NorconsultOffices',
+        featureInfoElements: JSON.stringify(geoJsonFeatureInfoTest),
+        featureInfoTitle: 'Feature Info Name',
+        layerOrder: -99,
+      } as IUploadGeoJson,
+    ];
+  }
+
   uploadGeoJson2(): void {
     this.giParams = [
       {
@@ -334,7 +353,8 @@ export class AppComponent {
         clusterdistance: 30,
         clustercount: false,
         featureInfoElements: JSON.stringify(geoJsonFeatureInfoTest),
-        featureInfoTitle: 'Feature Info Name' } as IUploadGeoJson,
+        featureInfoTitle: 'Feature Info Name',
+      } as IUploadGeoJson,
     ];
   }
 
