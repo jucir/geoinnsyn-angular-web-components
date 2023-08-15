@@ -5,6 +5,7 @@ import {
 } from './enums/custom-element-params';
 import { IActivateParam, IExtent, IHide, IMapCenter, IRemoveLayer, IRemoveLayers, ISaksInfoParam, IShowHideLayer, IShowLayers, ITransformCoordinates, IUploadDrawingGeoJson, IUploadGeoJson } from './interfaces/map-params';
 import { geoJsonFeatureInfoTest, geojsonTest, geojsonTest1, jsonStyleTest, jsonStyleTestCopy, routeGeoJson } from './testData/testData';
+import { EDrawPanelId, EGeometryType } from './enums/draw-tool-params';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,6 +23,16 @@ export class AppComponent {
   set giParams(value: any) {
     this._giParams = JSON.stringify(value);
   }
+
+  _giParamsDraw: any;
+  get giParamsDraw(): any {
+    return this._giParamsDraw;
+  }
+
+  set giParamsDraw(value: any) {
+    this._giParamsDraw = JSON.stringify(value);
+  }
+
 
   mapoutput(event: any): void {
     const eventDetail = event.detail;
@@ -358,6 +369,140 @@ export class AppComponent {
     ];
   }
 
+  // removeDrawingGeoJson(): void {
+  //   this.giParams = {
+  //     giParamId: EElementsParams.REMOVEDRAWINGGEOJSON,
+  //   };
+  // }
+
+  zoomOut(): void {
+    setTimeout(() => {
+      this.giParams = { giParamId: EElementsParams.ZOOMOUT };
+    });
+  }
+
+  getChosenSearchResult(value: boolean): void {
+    this.giParams = {
+      giParamId: EElementsParams.GETCHOSENSEARCHRESULT,
+      active: value,
+    } as IActivateParam;
+  }
+
+  transformCoordinates(): void {
+    this.giParams = {
+      giParamId: EElementsParams.GETTRANSFORMCOORDINATES,
+      fromEpsg: 'EPSG:32632',
+      toEpsg: 'EPSG:4326',
+      coordinates: [562247.0545959469, 6630364.923614501],
+    } as ITransformCoordinates;
+  }
+
+  mapMoveStartActive(): void {
+    this.giParams = {
+      giParamId: EElementsParams.GETMAPMOVESTART,
+      active: true,
+    } as IActivateParam;
+  }
+
+  mapMoveEndActive(): void {
+    this.giParams = {
+      giParamId: EElementsParams.GETMAPMOVEEND,
+      active: true,
+    } as IActivateParam;
+  }
+
+  removeLayer(): void {
+    this.giParams = {
+      giParamId: EElementsParams.REMOVELAYER,
+      name: 'test',
+    } as IRemoveLayer;
+  }
+
+  removeLayers(): void {
+    this.giParams = {
+      giParamId: EElementsParams.REMOVELAYERS,
+      names: ['test', 'test2'],
+    } as IRemoveLayers;
+  }
+
+  geolocation(value: boolean): void {
+    this.giParams = {
+      giParamId: EElementsParams.GEOLOCATION,
+      active: value,
+    } as IActivateParam;
+  }
+
+  showDrawTool(value: boolean): void {
+    this.giParamsDraw = {
+      giParamId: EElementsParams.SHOWDRAWTOOLUI,
+      show: value,
+      drawPanels: [EDrawPanelId.POINT, EDrawPanelId.LINE, EDrawPanelId.POLYGON]
+    };
+  }
+
+  startDraw(): void {
+    const draw = {
+      giParamId: EElementsParams.STARTDRAW,
+      type: EGeometryType.LINE,
+      snapGuides: false
+    };
+    this.giParamsDraw = draw;
+  }
+
+  modifyDraw(): void {
+    const draw = {
+      giParamId: EElementsParams.MODIFYDRAW,
+      // type: EGeometryType.LINE
+    };
+    this.giParamsDraw = draw;
+  }
+
+  changeDraw(): void {
+    const draw = {
+      giParamId: EElementsParams.MODIFYDRAW,
+      style: {
+        fill: {
+            color: "rgba(0,0,0,1)"
+        },
+        stroke: {
+          color: "rgba(245,166,35,1)",
+          width: 2,
+          lineDash: [10, 10]
+        },
+        image: {
+            radius: 7,
+            fill: {
+                color: "rgba(245,166,35,1)"
+            }
+        },
+      },
+    };
+    this.giParamsDraw = draw;
+  }
+
+  removeSelectedObject(): void {
+    const draw = {
+      giParamId: EElementsParams.REMOVESELECTEDOBJECT,
+      // mode: EMode.REMOVE,
+    };
+    this.giParamsDraw = draw;
+  }
+
+  removeAllDrawings(): void {
+    const draw = {
+      giParamId: EElementsParams.REMOVEALLDRAWINGS,
+      // mode: EMode.REMOVEALL,
+    };
+    this.giParamsDraw = draw;
+  }
+
+  stopDraw(): void {
+    const stopDraw = {
+      giParamId: EElementsParams.STOPDRAW,
+    }
+    this.giParamsDraw = stopDraw;
+  }
+
   uploadDrawingGeoJson(): void {
     const TASKS = {
       type: 'FeatureCollection',
@@ -465,72 +610,17 @@ export class AppComponent {
         },
       ],
     };
-    this.giParams = {
+    const uploadDrawingGeoJson = {
       giParamId: EElementsParams.UPLOADDRAWINGGEOJSON,
       data: JSON.stringify(TASKS),
     } as IUploadDrawingGeoJson;
+    this.giParamsDraw = uploadDrawingGeoJson;
   }
 
-  removeDrawingGeoJson(): void {
-    this.giParams = {
-      giParamId: EElementsParams.REMOVEDRAWINGGEOJSON,
+  downlaodDrawingGeoJson(): void {
+    const downloadDrawingGeoJson = {
+      giParamId: EElementsParams.DOWNLOADDRAWINGGEOJSON,
     };
-  }
-
-  zoomOut(): void {
-    setTimeout(() => {
-      this.giParams = { giParamId: EElementsParams.ZOOMOUT };
-    });
-  }
-
-  getChosenSearchResult(value: boolean): void {
-    this.giParams = {
-      giParamId: EElementsParams.GETCHOSENSEARCHRESULT,
-      active: value,
-    } as IActivateParam;
-  }
-
-  transformCoordinates(): void {
-    this.giParams = {
-      giParamId: EElementsParams.GETTRANSFORMCOORDINATES,
-      fromEpsg: 'EPSG:32632',
-      toEpsg: 'EPSG:4326',
-      coordinates: [562247.0545959469, 6630364.923614501],
-    } as ITransformCoordinates;
-  }
-
-  mapMoveStartActive(): void {
-    this.giParams = {
-      giParamId: EElementsParams.GETMAPMOVESTART,
-      active: true,
-    } as IActivateParam;
-  }
-
-  mapMoveEndActive(): void {
-    this.giParams = {
-      giParamId: EElementsParams.GETMAPMOVEEND,
-      active: true,
-    } as IActivateParam;
-  }
-
-  removeLayer(): void {
-    this.giParams = {
-      giParamId: EElementsParams.REMOVELAYER,
-      name: 'test',
-    } as IRemoveLayer;
-  }
-
-  removeLayers(): void {
-    this.giParams = {
-      giParamId: EElementsParams.REMOVELAYERS,
-      names: ['test', 'test2'],
-    } as IRemoveLayers;
-  }
-
-  geolocation(value: boolean): void {
-    this.giParams = {
-      giParamId: EElementsParams.GEOLOCATION,
-      active: value,
-    } as IActivateParam;
+    this.giParamsDraw = downloadDrawingGeoJson;
   }
 }

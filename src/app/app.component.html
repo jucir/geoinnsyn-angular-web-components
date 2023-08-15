@@ -36,7 +36,6 @@
 <button (click)="uploadGeoJson2()">Upload Geojson 2</button>
 <button (click)="uploadGeoJsonRoute()">Upload Geojson Route - egen definert CRS</button>
 <button (click)="uploadDrawingGeoJson()">Upload Drawing Geojson</button>
-<button (click)="removeDrawingGeoJson()">Remove Drawing Geojson</button>
 <button (click)="zoomOut()">Zoom Out</button>
 <button (click)="getChosenSearchResult(true)">Get Chosen Search Result Start</button>
 <button (click)="getChosenSearchResult(false)">Get Chosen Search Result End</button>
@@ -47,10 +46,21 @@
 <button (click)="removeLayers()">RemoveLayers</button>
 <button (click)="geolocation(true)">Start Geolocation</button>
 <button (click)="geolocation(false)">Stop Geolocation</button>
+<button (click)="showDrawTool(true)">Show Draw Tool</button>
+<button (click)="showDrawTool(false)">Hide Draw Tool</button>
+<button (click)="startDraw()">Start draw</button>
+<button (click)="modifyDraw()">Modify draw</button>
+<button (click)="changeDraw()">Change draw</button>
+<button (click)="removeSelectedObject()">Remove selected object</button>
+<button (click)="removeAllDrawings()">Remove all drawings</button>
+<button (click)="stopDraw()">Stop draw</button>
+<button (click)="uploadDrawingGeoJson()">Upload Drawing Geojson</button>
+<button (click)="downlaodDrawingGeoJson()">Download Drawing Geojson</button>
 <div class="isygis">
   <isygis-custom-isy-map
     *axLazyElement="moduleUrl"
     configurl="{{ configUrl }}"
     [giparams]="giParams"
     (mapoutput)="mapoutput($event)"></isygis-custom-isy-map>
+  <isygis-custom-isy-tool-draw [giparams]="giParamsDraw"></isygis-custom-isy-tool-draw>
 </div>
