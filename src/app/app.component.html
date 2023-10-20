@@ -1,66 +1,17 @@
-<button (click)="testGiParamsArray()">Test GI Params Array</button>
-<button (click)="showProperty()">Show property</button>
-<button (click)="hideMarker()">Hide marker</button>
-<button (click)="showNeighbors()">Show neighbors</button>
-<button (click)="removeSelection()">Remove selection</button>
-<button (click)="getMapLayers()">Get Map Layers</button>
-<button (click)="getVisibleLayers()">Get Visible Layers</button>
-<button (click)="showLayer()">Show Layer</button>
-<button (click)="showLayerByName()">Show Layer By Name</button>
-<button (click)="hideLayer()">Hide Layer</button>
-<button (click)="hideLayerByName()">Hide Layer By Name</button>
-<button (click)="showMarkerWhenClick()">Show marker when click</button>
-<button (click)="hideMarkerWhenClick()">Hide marker when click</button>
-<button (click)="getClickCoordinates(true)">Start get Click Coordinates</button>
-<button (click)="getClickCoordinates(false)">Stop get Click Coordinates</button>
-<button (click)="getPropertyInfo(true)">Start get property info</button>
-<button (click)="getPropertyInfo(false)">Stop get property info</button>
-<button (click)="getPointInfo(true)">Start get point info</button>
-<button (click)="getPointInfo(false)">Stop get point info</button>
-<button (click)="hideAllVisibleLayers()">Hide all visible layers</button>
-<button (click)="showLayers()">Show layers</button>
-<button (click)="resizeMap()">Resize map</button>
-<button (click)="getObjectGeometry(true)">Start Get object geometry</button>
-<button (click)="getObjectGeometry(false)">End Get object geometry</button>
-<button (click)="mapAnimation(false)">Stop map animation</button>
-<button (click)="mapAnimation(true)">Start map animation</button>
-<button (click)="getProjectConfig(true)">Start get project config</button>
-<button (click)="getProjectConfig(false)">Stop get project config</button>
-<button (click)="getExtent()">Get Extent</button>
-<button (click)="setExtent()">Set Extent</button>
-<button (click)="getCenter()">Get Center</button>
-<button (click)="setCenter()">Set Center</button>
-<button (click)="setCenter1()">Set Center1</button>
-<button (click)="uploadGeoJson()">Upload Geojson</button>
-<button (click)="uploadGeoJsonCopy()">Upload Geojson Copy</button>
-<button (click)="uploadGeoJson2()">Upload Geojson 2</button>
-<button (click)="uploadGeoJsonRoute()">Upload Geojson Route - egen definert CRS</button>
-<button (click)="uploadDrawingGeoJson()">Upload Drawing Geojson</button>
-<button (click)="zoomOut()">Zoom Out</button>
-<button (click)="getChosenSearchResult(true)">Get Chosen Search Result Start</button>
-<button (click)="getChosenSearchResult(false)">Get Chosen Search Result End</button>
-<button (click)="transformCoordinates()">TransformCoordinates</button>
-<button (click)="mapMoveStartActive()">MapMoveStartActive</button>
-<button (click)="mapMoveEndActive()">MapMoveEndActive</button>
-<button (click)="removeLayer()">RemoveLayer</button>
-<button (click)="removeLayers()">RemoveLayers</button>
-<button (click)="geolocation(true)">Start Geolocation</button>
-<button (click)="geolocation(false)">Stop Geolocation</button>
-<button (click)="showDrawTool(true)">Show Draw Tool</button>
-<button (click)="showDrawTool(false)">Hide Draw Tool</button>
-<button (click)="startDraw()">Start draw</button>
-<button (click)="modifyDraw()">Modify draw</button>
-<button (click)="changeDraw()">Change draw</button>
-<button (click)="removeSelectedObject()">Remove selected object</button>
-<button (click)="removeAllDrawings()">Remove all drawings</button>
-<button (click)="stopDraw()">Stop draw</button>
-<button (click)="uploadDrawingGeoJson()">Upload Drawing Geojson</button>
-<button (click)="downlaodDrawingGeoJson()">Download Drawing Geojson</button>
-<div class="isygis">
-  <isygis-custom-isy-map
-    *axLazyElement="moduleUrl"
-    configurl="{{ configUrl }}"
-    [giparams]="giParams"
-    (mapoutput)="mapoutput($event)"></isygis-custom-isy-map>
-  <isygis-custom-isy-tool-draw [giparams]="giParamsDraw"></isygis-custom-isy-tool-draw>
+<h1>Main side</h1>
+<div *ngIf="!showSide1 && !showSide2">
+  <span>
+    Show map by clicking on the buttons below
+  </span>
+</div>
+  
+<button (click)="showMapSide1()">Show side 1</button>
+<button (click)="showMapSide2()">Show side 2</button>
+<button (click)="hideAll()">Hide all</button>
+
+<div *ngIf="showSide1">
+  <app-side1></app-side1>
+</div>
+<div *ngIf="showSide2">
+  <app-side2></app-side2>
 </div>

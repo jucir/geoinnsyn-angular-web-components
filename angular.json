@@ -37,8 +37,7 @@
             "styles": [
               "src/styles.scss",
               "./node_modules/@isygis/geo-innsyn-web-components/geo-innsyn-web-components.css"
-            ],
-            "scripts": []
+            ]            
           },
           "configurations": {
             "production": {
