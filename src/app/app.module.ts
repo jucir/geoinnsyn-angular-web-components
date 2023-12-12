@@ -13,5 +13,6 @@ import { Side2Component } from './side2/side2.component';
   imports: [BrowserModule, LazyElementsModule],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [MapComponent],
 })
 export class AppModule {}

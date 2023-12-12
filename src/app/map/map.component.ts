@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
   EElementsParams,
   EMapOutputParams,
@@ -11,7 +11,7 @@ import { EDrawPanelId, EGeometryType } from '../enums/draw-tool-params';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent {
+export class MapComponent implements OnInit, OnDestroy {
   configUrl =
     'https://geoinnsyn.no/?project=Plandialog&application=demo&apiKey=qwerty1234';
   moduleUrl = '../assets/js/geo-innsyn-web-components.js';
@@ -33,6 +33,23 @@ export class MapComponent {
     this._giParamsDraw = JSON.stringify(value);
   }
 
+  _activateParam: any = undefined;
+  @Input() set activateParam(param: any) {
+    this._activateParam = param;
+  }
+  @Input() id: number = 0;
+  @Input() mapId: string = 'mapX';
+  @Input() keyParam: string = 'test';
+  @Input() componentId: number = 20;
+
+  ngOnInit(): void {
+    console.log('KeyParam: ', this.keyParam);
+    console.log('componentId: ', this.mapId);
+  }
+
+  ngOnDestroy(): void {
+    console.log('Destroy map component: ', this.mapId);
+  }
 
   mapoutput(event: any): void {
     const eventDetail = event.detail;
@@ -40,6 +57,21 @@ export class MapComponent {
     console.log('eventDetail', eventDetail);
     if (eventDetail['mapOutputId'] === 'mapCenter') {
       console.log('mapCenter', eventDetail['mapCenter']);
+    }
+    if (eventDetail['mapOutputId'] === 'mapLoaded') {
+      if (eventDetail['mapLoaded'] === true) {      
+        if (this._activateParam) {
+          this.giParams = this._activateParam;
+        }
+      }
+      // if (eventDetail['mapLoaded'] === false) {
+      //   console.log('mapLoaded false');
+      //   this.giParams = undefined;
+      // }
+    }
+    if (eventDetail['mapOutputId'] === 'mapMoveEnd') {
+      console.log('mapMoveEnd', eventDetail['mapMoveEnd']);
+      this.uploadGeoJson2();
     }
   }
 
