@@ -59,7 +59,9 @@
 <div class="isygis">
     <!-- <isygis-custom-isy-map [mapId]="mapId" key="{{keyParam}}" *axLazyElement="moduleUrl" configurl="{{ configUrl }}" [giparams]="giParams"
         (mapoutput)="mapoutput($event)"></isygis-custom-isy-map> -->
-    <isygis-custom-cache-isy-map [componentid]="componentId" [configurl]="configUrl" [mapid]="mapId" *axLazyElement="moduleUrl" [giparams]="giParams"
-        (mapoutput)="mapoutput($event)"></isygis-custom-cache-isy-map>
+    <!-- <isygis-custom-cache-isy-map [componentid]="componentId" [configurl]="configUrl" [mapid]="mapId" *axLazyElement="moduleUrl" [giparams]="giParams"
+        (mapoutput)="mapoutput($event)"></isygis-custom-cache-isy-map> -->
+    <isygis-custom-isy-map-cache [configurl]="configUrl" [mapid]="mapId"
+        *axLazyElement="moduleUrl" [giparams]="giParams" (mapoutput)="mapoutput($event)"></isygis-custom-isy-map-cache>
     <!-- <isygis-custom-isy-tool-draw [giparams]="giParamsDraw"></isygis-custom-isy-tool-draw> -->
 </div>

@@ -40,7 +40,6 @@ export class MapComponent implements OnInit, OnDestroy {
   @Input() id: number = 0;
   @Input() mapId: string = 'mapX';
   @Input() keyParam: string = 'test';
-  @Input() componentId: number = 20;
 
   ngOnInit(): void {
     console.log('KeyParam: ', this.keyParam);

@@ -10,17 +10,16 @@ export class Side2Component implements OnInit, AfterViewInit, OnDestroy {
   testParam: any = undefined;
 
   @ViewChild('container2', { read: ViewContainerRef }) container: ViewContainerRef | undefined;
-  private componentId = 2;
   private mapId = 'map2';
   constructor(private mapService: MapService) { }
 
-  loadComponent() {
-    this.mapService.createComponent(this.container, this.componentId, undefined, this.mapId);
-  }
+  // loadComponent() {
+  //   this.mapService.createComponent(this.container, this.componentId, undefined, this.mapId);
+  // }
 
-  unloadComponent() {
-    this.mapService.destroyComponent(this.componentId);
-  }
+  // unloadComponent() {
+  //   this.mapService.destroyComponent(this.componentId);
+  // }
 
   ngOnInit(): void {
     console.log('Acitave side2');
