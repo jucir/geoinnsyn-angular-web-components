@@ -57,7 +57,7 @@
 <button (click)="uploadDrawingGeoJson()">Upload Drawing Geojson</button>
 <button (click)="downlaodDrawingGeoJson()">Download Drawing Geojson</button>
 <div class="isygis">
-    <isygis-custom-isy-map *axLazyElement="moduleUrl" configurl="{{ configUrl }}" [giparams]="giParams"
-        (mapoutput)="mapoutput($event)"></isygis-custom-isy-map>
-    <isygis-custom-isy-tool-draw [giparams]="giParamsDraw"></isygis-custom-isy-tool-draw>
+    <isygis-custom-isy-map-cache *axLazyElement="moduleUrl" configurl="{{ configUrl }}" [giparams]="giParams"
+        (mapoutput)="mapoutput($event)"></isygis-custom-isy-map-cache>
+    <!-- <isygis-custom-isy-tool-draw [giparams]="giParamsDraw"></isygis-custom-isy-tool-draw> -->
 </div>

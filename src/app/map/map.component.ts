@@ -84,10 +84,10 @@ export class MapComponent {
   showProperty(): void {
     const visParams = {
       giParamId: EElementsParams.SHOWPROPERTY,
-      bruksnummer: '289',
+      bruksnummer: '202',
       festenummer: '',
-      gaardsnummer: '116',
-      kommunenummer: '3005',
+      gaardsnummer: '409',
+      kommunenummer: '5001',
       seksjonsnummer: '',
     };
     this.giParams = visParams;
@@ -96,10 +96,10 @@ export class MapComponent {
   showNeighbors(): void {
     const visParams = {
       giParamId: EElementsParams.SHOWNEIGHBORS,
-      bruksnummer: '289',
+      bruksnummer: '202',
       festenummer: '',
-      gaardsnummer: '116',
-      kommunenummer: '3005',
+      gaardsnummer: '409',
+      kommunenummer: '5001',
       seksjonsnummer: '',
     };
     this.giParams = visParams;
