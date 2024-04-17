@@ -15,6 +15,7 @@ export class MapComponent implements OnInit, OnDestroy {
   configUrl =
     'https://geoinnsyn.no/?project=Plandialog&application=demo&apiKey=qwerty1234';
   moduleUrl = '../assets/js/geo-innsyn-web-components.js';
+  
   _giParams: any;
   get giParams(): any {
     return this._giParams;
@@ -53,25 +54,47 @@ export class MapComponent implements OnInit, OnDestroy {
   mapoutput(event: any): void {
     const eventDetail = event.detail;
     if (!eventDetail) return;
-    console.log('eventDetail', eventDetail);
-    if (eventDetail['mapOutputId'] === 'mapCenter') {
-      console.log('mapCenter', eventDetail['mapCenter']);
-    }
+    console.log('eventDetail', eventDetail);    
     if (eventDetail['mapOutputId'] === 'mapLoaded') {
       if (eventDetail['mapLoaded'] === true) {      
         if (this._activateParam) {
           this.giParams = this._activateParam;
         }
-      }
-      // if (eventDetail['mapLoaded'] === false) {
-      //   console.log('mapLoaded false');
-      //   this.giParams = undefined;
-      // }
-    }
-    if (eventDetail['mapOutputId'] === 'mapMoveEnd') {
-      console.log('mapMoveEnd', eventDetail['mapMoveEnd']);
-      this.uploadGeoJson2();
-    }
+      }      
+    }    
+  }
+
+  hideAllVisibleLayers(): void {
+    this.giParams = {
+      giParamId: EElementsParams.HIDEALLVISIBLELAYERS,
+    };
+  }
+
+  showMarkerWhenClick(): void {
+    this.giParams = {
+      giParamId: EElementsParams.SHOWMARKERWHENCLICK,
+      active: true,
+      markerColor: 'rgba(255, 0, 0, 1)',
+    };
+  }
+
+  uploadGeoJson(): void {
+    this.giParams = [
+      {
+        giParamId: EElementsParams.UPLOADGEOJSON,
+        layerName: 'test',
+        features: JSON.stringify(geojsonTest),
+        jsonStyle: JSON.stringify(jsonStyleTest),
+        cluster: true,
+        clusterdistance: 30,
+        clustercount: true,
+        clusterstyleurl:
+          'https://test.geoinnsyn.no/services/ISY.GIS.IsyGeoinnsynConfig/api/v2/style?application=demo&name=NorconsultOffices',
+        featureInfoElements: JSON.stringify(geoJsonFeatureInfoTest),
+        featureInfoTitle: 'Feature Info Name',
+        layerOrder: -99,
+      } as IUploadGeoJson,
+    ];
   }
 
   setCenter(): void {
@@ -124,6 +147,14 @@ export class MapComponent implements OnInit, OnDestroy {
     this.giParams = visParams;
   }
 
+  getNeighborsForPlan(): void {
+    this.giParams = {
+      giParamId: 'GetNeighborsForPlan',
+      planId: "20210013",
+      kommunenummer: "3301",
+    };
+  }
+
   showNeighbors(): void {
     const visParams = {
       giParamId: EElementsParams.SHOWNEIGHBORS,
@@ -144,18 +175,6 @@ export class MapComponent implements OnInit, OnDestroy {
     this.giParams = {
       giParamId: EElementsParams.DEACTIVATESHOWNEIGHBORS,
     };
-  }
-
-  mapOutputData(data: any): void {
-    console.log('MAP OUTPUT DATA: ', data);
-    if (data['mapOutputId'] === 'mapLoaded') {
-      if (data['mapLoaded'] === true) {
-        const map = document.getElementById('map');
-        if (map) {
-          map.style.height = '800px';
-        }
-      }
-    }
   }
 
   getMapLayers(): void {
@@ -195,15 +214,7 @@ export class MapComponent implements OnInit, OnDestroy {
       giParamId: EElementsParams.HIDELAYERBYNAME,
       name: 'test',
     };
-  }
-
-  showMarkerWhenClick(): void {
-    this.giParams = {
-      giParamId: EElementsParams.SHOWMARKERWHENCLICK,
-      active: true,
-      markerColor: 'rgba(34, 215, 141, 1)',
-    };
-  }
+  }  
 
   hideMarkerWhenClick(): void {
     this.giParams = {
@@ -252,13 +263,7 @@ export class MapComponent implements OnInit, OnDestroy {
       giParamId: EElementsParams.GETPOINTINFO,
       active: value,
     } as IActivateParam;
-  }
-
-  hideAllVisibleLayers(): void {
-    this.giParams = {
-      giParamId: EElementsParams.HIDEALLVISIBLELAYERS,
-    };
-  }
+  }  
 
   showLayers(): void {
     this.giParams = {
@@ -326,25 +331,6 @@ export class MapComponent implements OnInit, OnDestroy {
       zoom: 12,
       showMarker: true,
     } as IMapCenter;
-  }
-
-  uploadGeoJson(): void {
-    this.giParams = [
-      {
-        giParamId: EElementsParams.UPLOADGEOJSON,
-        layerName: 'test',
-        features: JSON.stringify(geojsonTest),
-        jsonStyle: JSON.stringify(jsonStyleTest),
-        cluster: true,
-        clusterdistance: 30,
-        clustercount: true,
-        clusterstyleurl:
-          'https://test.geoinnsyn.no/services/ISY.GIS.IsyGeoinnsynConfig/api/v2/style?application=demo&name=NorconsultOffices',
-        featureInfoElements: JSON.stringify(geoJsonFeatureInfoTest),
-        featureInfoTitle: 'Feature Info Name',
-        layerOrder: -99,
-      } as IUploadGeoJson,
-    ];
   }
 
   uploadGeoJsonCopy(): void {
